@@ -8,16 +8,11 @@ import {
   TabList,
   Tab,
   Button,
-  PlanCard,
-  NFT,
-  Card,
-  CryptoCards,
-  NFTBalance,
   Modal,
   useNotification,
 } from "web3uikit";
 import { movies } from "../helpers/library";
-//import { getCollectionsByChain, networkCollections } from "../helpers/collections";
+import nwftlogosmall from "../images/nwftlogosmall.png";
 import { useState } from "react";
 import { useMoralis } from "react-moralis";
  
@@ -28,7 +23,7 @@ const Home = () => {
   const { isAuthenticated, Moralis, account } = useMoralis();
   const [myMovies, setMyMovies] = useState();
  
-  //const { NFT, PlanCard} = useEffect;
+
  
   useEffect(() => {
     async function fetchMyList() {
@@ -64,7 +59,7 @@ const Home = () => {
   const handleAddNotification = () => {
     dispatch({
       type: "success",
-      message: "Movie Added to List",
+      message: "Token added to List",
       title: "Success",
       position: "topL",
     });
@@ -72,40 +67,37 @@ const Home = () => {
  
   return (
     <>
+    
       <div className="logo">
-        <Logo />
+        <Logo><img src={nwftlogosmall} width="100" height="100"/></Logo> 
       </div>
       <div className="connect">
-        <Icon fill="#ffffff" size={24} svg="bell" />
+        
         <ConnectButton />
       </div>
       <div className="topBanner">
-        <TabList defaultActiveKey={1} tabStyle="bar">
-          <Tab tabKey={1} tabName={"Movies"}>
+        <TabList style={{zIndex:3}} defaultActiveKey={1} tabStyle="bar">
+          <Tab></Tab>
+          <Tab tabKey={7} tabName={"   "} style={{zIndex:1}}></Tab>
+          <Tab tabKey={6} tabName={"   "} style={{zIndex:1}}></Tab>
+          <Tab tabKey={5} tabName={""} style={{zIndex:1}}></Tab>
+          <Tab tabKey={4} tabName={""} style={{zIndex:1}}></Tab>
+          <Tab tabKey={1} tabName={"Catalog"} style={{zIndex:3}}>
             <div className="scene">
+            <div>
+              <p>
+                
+              </p>
+            </div>
               <img src={movies[0].Scene} className="sceneImg" alt=""></img>
               <img className="sceneLogo" src={movies[0].Logo} alt=""></img>
               <p className="sceneDesc">{movies[0].Description}</p>
-              <div className="playButton">
-                <Button
-                  icon="chevronRightX2"
-                  text="Play"
-                  theme="secondary"
-                  type="button"
-                />
-                <Button icon="plus" text="Add to my list" theme="translucent" type="button" onClick={async() =>{
-                if (isAuthenticated) {
-                  await Moralis.Cloud.run("updateMyList", {
-                    addrs: account,
-                    newFav: movies[0].Name
-                  })
-                  handleAddNotification();
-                } else {
-                  handleNewNotification();
-                }
-               
-              }} />
-              </div>
+              
+
+
+
+
+              
             </div>
  
             <div className="title">Movies</div>
@@ -124,54 +116,17 @@ const Home = () => {
                   );
                 })}
             </div>
-            <div className="scene">
-              <img src={"https://i.imgur.com/1O9dqkq.jpg"}></img>  
-            </div>
+            
  
-            <div className="title">Buy NFTs</div>
-            <div className="thumbs">
-              {movies &&
-                movies.map((e, i) => {
-                  return (
-                    <img
-                      src={"https://i.imgur.com/hIVW5Bb.png"}
-                      className="thumbnail" alt="" key={i}
-                      onClick={() => {
-                       
-                        //getCollectionsByChain();
-                        //setSelectedFilm(e);
-                        setVisible(true);
-                      }}
-                    ></img>
-                  );
-                })}
-            </div>
+           
+                  
+        
           </Tab>
-          <Tab tabKey={2} tabName={"NFTs"}>
-            <div className="scene">
-              <img src={"https://i.imgur.com/2zp1YO2.jpg"}></img>  
-            </div>
- 
-            <div className="title">Buy NFTs</div>
-            <div className="thumbs">
-              {movies &&
-                movies.map((e, i) => {
-                  return (
-                    <img
-                      src={"https://i.imgur.com/hIVW5Bb.png"}
-                      className="thumbnail" alt="" key={i}
-                      onClick={() => {
-                       
-                        //getCollectionsByChain();
-                        //setSelectedFilm(e);
-                        setVisible(true);
-                      }}
-                    ></img>
-                  );
-                })}
-            </div>
-          </Tab>
-          <Tab tabKey={3} tabName={"MyList"}>
+
+
+
+
+          <Tab tabKey={3} tabName={"MyList"} style={{zIndex:3}}>
             <div className="ownListContent">
               <div className="title">Your Library</div>
               {myMovies && isAuthenticated ? (
@@ -207,6 +162,7 @@ const Home = () => {
               isVisible={visible}
               hasFooter={false}
               width="1000px"
+              
             >
               <div className="modalContent">
                 <img src={selectedFilm.Scene} className="modalImg" alt=""></img>
@@ -224,7 +180,7 @@ const Home = () => {
                       </Link>
                       <Button
                         icon="plus"
-                        text="Add to My List"
+                        text="Generate Token"
                         theme="translucent"
                         type="button"
                         onClick={async () => {
@@ -247,7 +203,7 @@ const Home = () => {
                       />
                       <Button
                         icon="plus"
-                        text="Add to My List"
+                        text="Movie Token"
                         theme="translucent"
                         type="button"
                         onClick={handleNewNotification}
@@ -277,7 +233,11 @@ const Home = () => {
                     <br />
                     Actors:
                     <span className="deets">{selectedFilm.Actors}</span>
+                    <div>
+
+                    </div>
                   </div>
+
                 </div>
               </div>
             </Modal>
