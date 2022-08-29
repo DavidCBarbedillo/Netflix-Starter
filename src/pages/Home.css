@@ -135,7 +135,7 @@
 }
 
 .details {
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: bold;
   gap: 20px;
   padding: 20px 0px;
@@ -152,7 +152,7 @@
 .description{
   padding-left: 50px;
   width: 60%;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .detailedInfo {
@@ -164,7 +164,7 @@
 
 .deets {
   margin-left: 5px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 
